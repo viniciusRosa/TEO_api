@@ -2,10 +2,10 @@
 exports.up = knex => knex.schema.createTable('schools', table => {
     table.increments('id').primary(),
     table.string('school_name').notNullable(),
-    table.string('street').notNullable(),
+    table.string('address').notNullable(),
     table.string('number').notNullable(),
     table.string('district').notNullable(),
-    table.string('complement').notNullable(),
+    table.string('complement'),
     table.string('email').notNullable(),
     table.string('phone_number').notNullable(),
     table.decimal('latitude'),

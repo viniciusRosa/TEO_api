@@ -3,7 +3,11 @@ import Knex from 'knex';
 import connection  from '../database/connection';
 
 class SchoolController {
-    async index() {}
+    async index(request: Request, response: Response) {
+        const schools = await connection.select().table('schools')
+
+        return response.json(schools);
+    }
 
     async show() {}
 
@@ -15,7 +19,7 @@ class SchoolController {
             complement,
             district,
             number,
-            street,
+            address,
             school_name 
          } = request.body;
 
@@ -23,7 +27,7 @@ class SchoolController {
 
          const school = {
             school_name,
-            street,
+            address,
             number,
             district,
             complement,

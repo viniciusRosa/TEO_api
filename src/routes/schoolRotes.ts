@@ -5,9 +5,7 @@ import SchoolController from '../controllers/SchoolController'
 const schoolController = new SchoolController;
 
 
-schoolRoutes.get('/schools', async function(request, response) {
-    response.send('cheguei aqui.')
-});
+schoolRoutes.get('/schools', schoolController.index)
 
 schoolRoutes.get('/schools/:id', async function(request, response) {});
 
