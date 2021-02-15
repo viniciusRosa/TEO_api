@@ -1,17 +1,15 @@
-// const knexfile = require('../../knexfile');
-// const knex = require('knex')(knexfile.development);
-
-// module.exports = knex;
-
-
 import knex from 'knex';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const connection = knex({
     client: 'pg',
     connection: {
-      database: "dbv1",
-      user: "pguser",
-      password: "1234"
+      database: process.env.TEODATABASE,
+      user: process.env.TEOUSER,
+      password: process.env.TEOPASSWORD,
     }
 })
 

@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import SchoolRotes from './routes/schoolRotes';
 
 dotenv.config();
+
 app.use('/api', SchoolRotes);
 
 
