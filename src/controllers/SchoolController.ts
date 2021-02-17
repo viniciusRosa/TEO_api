@@ -28,6 +28,7 @@ class SchoolController {
             cep,
             email,
             phone_number,
+            imageId
         } = request.body;
        
          const trx = await connection.transaction();
@@ -37,11 +38,11 @@ class SchoolController {
 
             const { lat, lng } = coordinates.data.results[0].geometry.location
 
-            console.log(request.file)
+
             
             await trx('schools').insert({
                 school_name,
-                image: request.file.filename,
+                image: imageId,
                 address,
                 number,
                 district,

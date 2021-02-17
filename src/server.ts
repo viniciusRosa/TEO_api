@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/uploads', express.static(path.resolve(__dirname, '..', 'Uploads', 'schools')))
+app.use('/uploads/schools', express.static(path.resolve(__dirname, '..', 'Uploads', 'schools')))
 
 
 export default app;
