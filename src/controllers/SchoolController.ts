@@ -36,9 +36,12 @@ class SchoolController {
             const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
 
             const { lat, lng } = coordinates.data.results[0].geometry.location
+
+            console.log(request.file)
             
             await trx('schools').insert({
                 school_name,
+                image: request.file.filename,
                 address,
                 number,
                 district,

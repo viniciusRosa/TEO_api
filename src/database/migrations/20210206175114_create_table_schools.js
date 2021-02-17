@@ -2,6 +2,7 @@
 exports.up = knex => knex.schema.createTable('schools', table => {
     table.increments('id').primary(),
     table.string('school_name').notNullable(),
+    table.string('image'),
     table.string('address').notNullable(),
     table.string('number').notNullable(),
     table.string('district').notNullable(),
