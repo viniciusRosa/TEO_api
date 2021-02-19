@@ -1,6 +1,7 @@
 
 exports.up = knex => knex.schema.createTable('files', table => {
   table.increments('id').primary(),
+  table.string('filename'),
   table.string('originalname'),
   table.string('fieldname'),
   table.string('mimetype'),

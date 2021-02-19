@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import Knex from 'knex';
 import connection  from '../database/connection';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,6 +11,7 @@ class FilesController {
     async create(request: Request, response: Response, next: NextFunction) {
         if (request.file) {
             const {
+                filename,
                 originalname,
                 fieldname,
                 mimetype,
@@ -23,6 +23,7 @@ class FilesController {
     
             try{
                 const insertedId = await trx('files').insert({
+                    filename,
                     originalname,
                     fieldname,
                     mimetype,
@@ -34,17 +35,16 @@ class FilesController {
 
                 request.body.imageId = String(insertedId[0].id)
 
-                next();
+                return next();
             } catch(err) {
                 console.log(err);
                 await trx.rollback();
     
                 return response.status(400).send('failure');
             }
-
         }
 
-        next()
+        next();
 
     }
 
