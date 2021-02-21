@@ -50,7 +50,9 @@ class FilesController {
 
     async update() {}
 
-    async delete() {}
+    async delete(request: Request, response: Response) {
+        
+    }
 }
 
 export default FilesController;

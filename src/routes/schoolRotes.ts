@@ -23,6 +23,6 @@ schoolRoutes.post('/schools',upload.single('school'), filesController.create, sc
 
 schoolRoutes.put('/schools/:id', async function (request, response) { });
 
-schoolRoutes.delete('/schools/:id', async function (request, response) { });
+schoolRoutes.delete('/schools/:id', schoolController.delete);
 
 export default schoolRoutes;

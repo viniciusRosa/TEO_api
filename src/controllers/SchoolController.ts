@@ -71,7 +71,23 @@ class SchoolController {
 
     async update() {}
 
-    async delete() {}
+    async delete(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const trx = await connection.transaction();
+        
+        try{
+            const imageID = await trx('schools').where({id}).del('image');
+            console.log(imageID)
+            await trx('files').where({id: imageID[0]}).del();
+            await trx.commit()
+
+            return response.status(200).send('ok');
+        } catch(err) {
+            console.log(err);
+            response.status(400).send('failure')
+        }
+    }
 }
 
 export default SchoolController;
