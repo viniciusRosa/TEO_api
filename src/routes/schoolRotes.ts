@@ -14,14 +14,11 @@ const upload = multer({ storage: schoolStorage })
 
 schoolRoutes.get('/schools', schoolController.index)
 
-schoolRoutes.get('/schools/:id', async function (request, response) { });
+schoolRoutes.get('/schools/:id', schoolController.show);
 
 schoolRoutes.post('/schools',upload.single('school'), filesController.create, schoolController.create)
-//  schoolRoutes.post('/schools', upload.single('school'), filesController.create, (req, res) => {
-//     console.log(req)
-// })
 
-schoolRoutes.put('/schools/:id', async function (request, response) { });
+schoolRoutes.put('/schools/:id', upload.single('image'), filesController.create, schoolController.update);
 
 schoolRoutes.delete('/schools/:id', schoolController.delete);
 

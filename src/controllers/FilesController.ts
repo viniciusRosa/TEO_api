@@ -43,7 +43,7 @@ class FilesController {
                 return response.status(400).send('failure');
             }
         }
-
+        request.body.imageId = '1'
         next();
 
     }
