@@ -41,7 +41,7 @@ class VehicleController {
             await trx('vehicles').insert({
                 vehicle_name,
                 doc_number,
-                seats,
+                seats: Number(seats),
             })
     
              await trx.commit();
