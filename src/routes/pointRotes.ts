@@ -7,14 +7,14 @@ const pointController = new PointController;
 import FilesController from '../controllers/FilesController';
 const filesController = new FilesController;
 
-// schoolRoutes.get('/schools', schoolController.index)
+pointRoutes.get('/points', pointController.index)
 
-// schoolRoutes.get('/schools/:id', schoolController.show);
+pointRoutes.get('/points/:id', pointController.show);
 
 pointRoutes.post('/points', pointController.create)
 
-// schoolRoutes.put('/schools/:id', upload.single('image'), filesController.create, schoolController.update);
+pointRoutes.put('/points/:id', pointController.update);
 
-// schoolRoutes.delete('/schools/:id', schoolController.delete);
+pointRoutes.delete('/points/:id', pointController.delete);
 
 export default pointRoutes;

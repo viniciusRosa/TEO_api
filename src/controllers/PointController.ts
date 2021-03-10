@@ -9,28 +9,25 @@ dotenv.config();
 class PointController {
 
 
-    // async index(request: Request, response: Response) {
-    //     // const schools = await connection.select().table('schools')
-    //    const schools = await connection('schools')
-    //         .join('files', 'files.id', '=', 'schools.image')
-    //         .select('schools.*', 'files.filename')
+    async index(request: Request, response: Response) {
+       const points = await connection('points')
+            .select()
        
-    //     return response.json(schools);
-    // }
+        return response.json(points);
+    }
 
-    // async show(request: Request, response: Response) {
+    async show(request: Request, response: Response) {
 
-    //     const { id } = request.params;
+        const { id } = request.params;
 
 
-    //     const school = await connection('schools')
-    //     .join('files', 'files.id', '=', 'schools.image')
-    //     .select('schools.*', 'files.filename')
-    //     .where('schools.id', id)
+        const school = await connection('points')
+        .select()
+        .where('points.id', id)
 
-    //     return response.json(school);
+        return response.json(school);
 
-    // }
+    }
 
     async create(request: Request, response: Response) {
         
@@ -51,7 +48,7 @@ class PointController {
             const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
             const { lat, lng } = coordinates.data.results[0].geometry.location
   
-            await trx('schools').insert({
+            await trx('points').insert({
                 point_name,
                 address,
                 number,
@@ -76,76 +73,69 @@ class PointController {
          }        
     }
 
-    // async update(request: Request, response: Response) {
+    async update(request: Request, response: Response) {
 
-    //     const { id } = request.params;
+        const { id } = request.params;
 
-    //     const { 
-    //         school_name, 
-    //         address,
-    //         number,
-    //         district,
-    //         complement,
-    //         uf,
-    //         city,
-    //         cep,
-    //         email,
-    //         phone_number,
-    //         imageId
-    //     } = request.body;
-    //      const trx = await connection.transaction();
+        const { 
+            point_name, 
+            address,
+            number,
+            district,
+            complement,
+            uf,
+            city,
+            cep,
+        } = request.body;
+         const trx = await connection.transaction();
 
-    //      try {
-    //         const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
-    //         const { lat, lng } = coordinates.data.results[0].geometry.location
+         try {
+            const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
+            const { lat, lng } = coordinates.data.results[0].geometry.location
             
-    //         await trx('schools')
-    //         .where({id})
-    //         .update({
-    //             school_name,
-    //             image: Number(imageId),
-    //             address,
-    //             number,
-    //             district,
-    //             complement,
-    //             uf,
-    //             city,
-    //             cep,
-    //             email,
-    //             phone_number,
-    //             latitude: lat,
-    //             longitude: lng
-    //         })
+            await trx('points')
+            .where({id})
+            .update({
+                point_name, 
+                address,
+                number,
+                district,
+                complement,
+                uf,
+                city,
+                cep,
+                latitude: lat,
+                longitude: lng
+            })
     
-    //          await trx.commit();
+             await trx.commit();
 
-    //          return response.status(200).send('ok')
+             return response.status(200).send('ok')
 
-    //      } catch(err) {
-    //          console.log(err);
-    //          await trx.rollback();
+         } catch(err) {
+             console.log(err);
+             await trx.rollback();
              
-    //          response.status(400).send('failure')
-    //      }        
+             response.status(400).send('failure')
+         }        
 
-    // }
+    }
 
-    // async delete(request: Request, response: Response) {
-    //     const { id } = request.params;
+    async delete(request: Request, response: Response) {
+        const { id } = request.params;
 
-    //     const trx = await connection.transaction();
+        const trx = await connection.transaction();
         
-    //     try{
-    //         const imageID = await trx('schools').where({id}).del('image');
-    //         await trx('files').where({id: imageID[0]}).del();
-    //         await trx.commit()
+        try{
+            await trx('points').where({id}).del();
+            await trx.commit()
 
-    //         return response.status(200).send('ok');
-    //     } catch(err) {
-    //         console.log(err);
-    //         response.status(400).send('failure')
-    //     }
-    // }
+            return response.status(200).send('ok');
+        } catch(err) {
+            console.log(err);
+            response.status(400).send('failure')
+        }
+    }
 }
 
 export default PointController;
