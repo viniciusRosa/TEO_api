@@ -11,6 +11,16 @@ const schoolStorage = multer.diskStorage({
     }
 })
 
+const studentStorage = multer.diskStorage({
+    destination: function(request, file, cb) {
+        cb(null, path.resolve(__dirname, '..', '..', 'Uploads', 'Students'))},
+    filename(request, file, callback) {
+        const unique = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        callback(null, unique + '-' + Normalize_image(file.originalname)   );
+    }
+})
+
 export {
-    schoolStorage
+    schoolStorage,
+    studentStorage
 }

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import Knex from 'knex';
 import connection  from '../database/connection';
 import { Normalize } from '../Utils/Normalize'
 import googleApi from '../services/googleApi';
@@ -10,7 +9,6 @@ class SchoolController {
 
 
     async index(request: Request, response: Response) {
-        // const schools = await connection.select().table('schools')
        const schools = await connection('schools')
             .join('files', 'files.id', '=', 'schools.image')
             .select('schools.*', 'files.filename')
