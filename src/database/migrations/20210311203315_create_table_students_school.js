@@ -5,7 +5,6 @@ exports.up = knex => knex.schema.createTable('students_school', table => {
         .notNullable()
         .references('id')
         .inTable('schools'),
-    table.string('registration'),
     table.string('series').notNullable(),
     table.string('class').notNullable(),
     table.string('shift').notNullable(),

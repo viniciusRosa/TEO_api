@@ -1,7 +1,10 @@
 import express from 'express';
+import { SendMessageController } from  '../controllers/SendMessageController';
 const messageRoutes = express.Router();
 
+const sendMessageController = new SendMessageController();
 
+messageRoutes.post('/messages', sendMessageController.handle)
 
 // schoolRoutes.get('/schools', schoolController.index)
 
