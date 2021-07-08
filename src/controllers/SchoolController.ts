@@ -12,7 +12,7 @@ class SchoolController {
        const schools = await connection('schools')
             .join('files', 'files.id', '=', 'schools.image')
             .select('schools.*', 'files.filename')
-       
+
         return response.json(schools);
     }
 
@@ -31,9 +31,9 @@ class SchoolController {
     }
 
     async create(request: Request, response: Response) {
-        
-        const { 
-            school_name, 
+
+        const {
+            school_name,
             address,
             number,
             district,
@@ -45,13 +45,13 @@ class SchoolController {
             phone_number,
             imageId
         } = request.body;
-       
+
          const trx = await connection.transaction();
 
          try {
-            const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
-            const { lat, lng } = coordinates.data.results[0].geometry.location
-  
+            // const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
+            // const { lat, lng } = coordinates.data.results[0].geometry.location
+
             await trx('schools').insert({
                 school_name,
                 image: Number(imageId),
@@ -64,10 +64,10 @@ class SchoolController {
                 cep,
                 email,
                 phone_number,
-                latitude: lat,
-                longitude: lng
+                latitude: "-2356598",
+                longitude: "-1215454"
             })
-    
+
              await trx.commit();
 
              return response.status(200).send('ok')
@@ -75,17 +75,17 @@ class SchoolController {
          } catch(err) {
              console.log(err);
              await trx.rollback();
-             
+
              response.status(400).send('failure')
-         }        
+         }
     }
 
     async update(request: Request, response: Response) {
 
         const { id } = request.params;
 
-        const { 
-            school_name, 
+        const {
+            school_name,
             address,
             number,
             district,
@@ -102,7 +102,7 @@ class SchoolController {
          try {
             const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
             const { lat, lng } = coordinates.data.results[0].geometry.location
-            
+
             await trx('schools')
             .where({id})
             .update({
@@ -120,7 +120,7 @@ class SchoolController {
                 latitude: lat,
                 longitude: lng
             })
-    
+
              await trx.commit();
 
              return response.status(200).send('ok')
@@ -128,9 +128,9 @@ class SchoolController {
          } catch(err) {
              console.log(err);
              await trx.rollback();
-             
+
              response.status(400).send('failure')
-         }        
+         }
 
     }
 
@@ -138,7 +138,7 @@ class SchoolController {
         const { id } = request.params;
 
         const trx = await connection.transaction();
-        
+
         try{
             const imageID = await trx('schools').where({id}).del('image');
             await trx('files').where({id: imageID[0]}).del();
