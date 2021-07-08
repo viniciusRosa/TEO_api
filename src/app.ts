@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express'
 import app from './server';
 import dotenv from 'dotenv';
 
@@ -6,6 +7,19 @@ import routes from './routes';
 dotenv.config();
 
 app.use('/api', routes);
+
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof Error) {
+    return response.status(400).json({
+      error:err.message
+    });
+  }
+
+  return response.status(500).json({
+    status: "error",
+    message: "internal server error"
+  });
+})
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log(`Run on port ${process.env.SERVER_PORT}`);

@@ -12,7 +12,7 @@ class MessageData implements IMessageData {
 
     const trx = await connection.transaction();
 
-    const msg = await trx('message').insert({
+    const msg = await trx('messages').insert({
       from_id: message.fromId,
       to_id: message.toId,
       message: message.message
