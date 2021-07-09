@@ -10,17 +10,24 @@ class MessageData implements IMessageData {
 
   async save(message: IMessage) {
 
-    const trx = await connection.transaction();
+    try{
 
-    const msg = await trx('messages').insert({
-      from_id: message.fromId,
-      to_id: message.toId,
-      message: message.message
-    }, ['id', 'message'])
+      const trx = await connection.transaction();
 
-    await trx.commit();
+      const msg = await trx('messages').insert({
+        from_id: message.fromId,
+        to_id: message.toId,
+        message: message.message
+      }, ['id', 'message'])
 
-    return msg;
+      await trx.commit();
+
+      return msg;
+
+    } catch(err) {
+      throw new Error(err);
+    }
+
 
   }
 }
