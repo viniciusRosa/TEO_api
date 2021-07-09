@@ -6,7 +6,7 @@ class SendMessageController {
     const { fromId, toId, message } = request.body;
 
     const sendMessageService = new SendMessageService();
-    console.log({ fromId, toId, message })
+
     const msg = await sendMessageService.execute({ fromId, toId, message });
 
     return response.json(msg)

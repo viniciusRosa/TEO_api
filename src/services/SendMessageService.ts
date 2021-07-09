@@ -7,8 +7,6 @@ class SendMessageService {
     // Use cases for message
 
     const newmsg = new Message(fromId, toId, message);
-    console.log('TESTE ===> ' + newmsg)
-    console.log('TESTE TYPE===> ' + typeof (newmsg))
 
     const messageData = new MessageData();
 
