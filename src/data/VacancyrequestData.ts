@@ -3,6 +3,23 @@ import connection from '../database/connection';
 
 class VacancyrequestData {
 
+  async index() {
+
+    try{
+
+      const trx = await connection.transaction();
+
+      const vacancyrequests = await trx('vacancyrequests').select();
+
+      return vacancyrequests
+
+    } catch(err) {
+
+       throw new Error(err);
+
+    }
+  }
+
   async save(vacancy: IVacancyrequest) {
 
     try {

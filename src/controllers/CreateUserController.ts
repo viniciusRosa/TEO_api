@@ -12,8 +12,6 @@ class CreateUserController {
 
     const createUserService = new CreateUserService();
 
-    console.log({ name, email, role, password })
-
     const user = await createUserService.execute({ name, email, role, password });
 
     return response.json(user)
