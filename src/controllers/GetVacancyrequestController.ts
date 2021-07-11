@@ -4,9 +4,11 @@ import { GetVacancyrequestService } from '../services/GetVacancyrequestService';
 class GetVacancyrequestController {
   async handle(request: Request, response: Response) {
 
+    const { id } = request.params;
+
     const getVacancyrequestService = new GetVacancyrequestService();
 
-    const vacancyrequests = await getVacancyrequestService.execute();
+    const vacancyrequests = await getVacancyrequestService.execute(id);
 
     return response.json(vacancyrequests)
   }

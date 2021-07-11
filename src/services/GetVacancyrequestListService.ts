@@ -1,16 +1,16 @@
 import { VacancyrequestData } from '../data/VacancyrequestData';
 
-class GetVacancyrequestService {
-  async execute(id: string) {
+class GetVacancyrequestListService {
+  async execute() {
 
     // Use cases for message
 
     const vacancyData = new VacancyrequestData();
 
-    const vacancyrequests = await vacancyData.show(id);
+    const vacancyrequests = await vacancyData.index();
 
     return vacancyrequests;
   }
 }
 
-export { GetVacancyrequestService }
+export { GetVacancyrequestListService }
