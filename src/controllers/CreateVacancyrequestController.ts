@@ -5,11 +5,12 @@ class CreateVacancyrequestController {
   async handle(request: Request, response: Response) {
     const {
         userid,
+        status
       } = request.body;
 
     const createVacancyrequestService = new CreateVacancyrequestService();
 
-    const vacancyrequest = await createVacancyrequestService.execute({ userid, status : 'analysing'});
+    const vacancyrequest = await createVacancyrequestService.execute({ userid, status});
 
     return response.json(vacancyrequest)
   }

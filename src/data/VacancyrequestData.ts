@@ -9,12 +9,15 @@ class VacancyrequestData {
 
       const trx = await connection.transaction();
 
+      const status = 'in_progress';
+
       const vacancyrequests = await trx('vacancyrequests')
       .join('users', 'users.id', '=', 'vacancyrequests.user_id')
       .join('students', 'students.user_id', '=', 'users.id')
       .join('schools', 'schools.id', '=', 'students.school_id')
       .select('students.image', 'users.name', 'schools.school_name',
-              'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'users.id');
+              'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'users.id')
+      .where('vacancyrequests.status', status);
 
       await trx.commit();
 
@@ -58,7 +61,7 @@ class VacancyrequestData {
       const trx = await connection.transaction();
 
       const vacancyrequest = await trx('vacancyrequests').insert({
-        userid: vacancy.userid,
+        user_id: vacancy.userid,
         status: vacancy.status
       }, ['id', 'status'])
 

@@ -36,11 +36,7 @@ class MessageData implements IMessageData {
     try{
 
       const trx = await connection.transaction();
-
-      const msgs = await trx('messages')
-      .select()
-      .whereIn('from_id', [from, to])
-      .orWhereIn('to_id', [from, to]);
+      const msgs = await trx.raw('select * from messages where (from_id = ? and to_id = ?) or (from_id = ? and to_id = ?)', [from, to, to, from])
 
       await trx.commit();
       return msgs;
