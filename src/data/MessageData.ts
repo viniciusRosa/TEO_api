@@ -30,6 +30,29 @@ class MessageData implements IMessageData {
 
 
   }
+
+  async show(from: number, to: number) {
+
+    try{
+
+      const trx = await connection.transaction();
+
+      const msgs = await trx('messages')
+      .select()
+      .whereIn('from_id', [from, to])
+      .orWhereIn('to_id', [from, to]);
+
+      await trx.commit();
+      return msgs;
+
+    } catch(err) {
+      throw new Error(err);
+    }
+
+
+  }
+
+
 }
 
 export { MessageData }

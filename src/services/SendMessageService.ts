@@ -2,14 +2,14 @@ import { IMessage, Message } from '../entities/Message';
 import { MessageData } from '../data/MessageData';
 
 class SendMessageService {
-  async execute({ fromId, toId, message }: IMessage) {
+  async execute( from: number, to: number, message: string ) {
 
     // Use cases for message
-    if(!fromId || !toId || !message) {
+    if(!from || !to || !message) {
       throw new Error('Data is missing.')
     }
 
-    const newmsg = new Message(fromId, toId, message);
+    const newmsg = new Message(from, to, message);
 
     const messageData = new MessageData();
 

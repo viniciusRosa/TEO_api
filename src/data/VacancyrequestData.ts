@@ -51,14 +51,6 @@ class VacancyrequestData {
     }
   }
 
-//   SELECT va.*, us.*, st.*
-// FROM public.vacancyrequests va
-// join public.users us
-// on us.id = va.user_id
-// join public.students st
-// on st.user_id = us.id ;
-
-
   async save(vacancy: IVacancyrequest) {
 
     try {

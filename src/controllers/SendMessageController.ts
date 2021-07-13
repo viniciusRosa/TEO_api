@@ -3,11 +3,11 @@ import { SendMessageService } from '../services/SendMessageService';
 
 class SendMessageController {
   async handle(request: Request, response: Response) {
-    const { fromId, toId, message } = request.body;
+    const { from, to, message } = request.body.data;
 
     const sendMessageService = new SendMessageService();
 
-    const msg = await sendMessageService.execute({ fromId, toId, message });
+    const msg = await sendMessageService.execute( from, to, message );
 
     return response.json(msg)
   }
