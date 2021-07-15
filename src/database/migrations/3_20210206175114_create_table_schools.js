@@ -1,8 +1,7 @@
 
 exports.up = knex => knex.schema.createTable('schools', table => {
     table.uuid('id').primary(),
-    table.string('school_name').notNullable(),
-    table.integer('image'),
+    table.string('name').notNullable(),
     table.string('address').notNullable(),
     table.string('number').notNullable(),
     table.string('district').notNullable(),
@@ -11,7 +10,7 @@ exports.up = knex => knex.schema.createTable('schools', table => {
     table.string('city').notNullable(),
     table.string('cep').notNullable(),
     table.string('email').notNullable(),
-    table.string('phone_number').notNullable(),
+    table.string('phone').notNullable(),
     table.uuid('node_id'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
