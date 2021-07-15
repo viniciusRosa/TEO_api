@@ -1,8 +1,8 @@
 
 exports.up = knex => knex.schema.createTable('messages', table => {
-    table.increments('id').primary(),
-    table.integer('from_id'),
-    table.integer('to_id')
+    table.uuid('id').primary(),
+    table.uuid('from_id'),
+    table.uuid('to_id')
     table.string('message'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())

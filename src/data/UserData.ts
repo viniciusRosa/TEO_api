@@ -10,6 +10,7 @@ class UserData {
       const trx = await connection.transaction();
 
       const newUser = await trx('users').insert({
+        id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,

@@ -1,6 +1,6 @@
 
 exports.up = knex => knex.schema.createTable('schools', table => {
-    table.increments('id').primary(),
+    table.uuid('id').primary(),
     table.string('school_name').notNullable(),
     table.integer('image'),
     table.string('address').notNullable(),
@@ -12,7 +12,7 @@ exports.up = knex => knex.schema.createTable('schools', table => {
     table.string('cep').notNullable(),
     table.string('email').notNullable(),
     table.string('phone_number').notNullable(),
-    table.integer('node_id'),
+    table.uuid('node_id'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
 

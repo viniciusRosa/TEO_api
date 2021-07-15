@@ -1,8 +1,10 @@
-import { IUser, User } from '../entities/User';
+import { User } from '../entities/User';
 import { UserData } from '../data/UserData';
+import {v4 as uuid} from 'uuid';
+
 
 class CreateUserService {
-  async execute({ name, email, role, password }: IUser) {
+  async execute(name: string, email: string, role: string, password: string ) {
 
     // Use cases for message
 
@@ -18,7 +20,7 @@ class CreateUserService {
       throw new Error('Password incorrect')
     }
 
-    const user = new User(name, email, role, password);
+    const user = new User(uuid(), name, email, role, password);
 
     const userData = new UserData();
 
