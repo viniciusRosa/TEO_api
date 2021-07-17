@@ -18,7 +18,7 @@ class CreateSchoolController {
 
     const createSchoolService = new CreateSchoolService();
 
-    const user = await createSchoolService.execute(
+    const school = await createSchoolService.execute(
       name,
       address,
       number,
@@ -31,7 +31,7 @@ class CreateSchoolController {
       phone
       );
 
-    return response.json(user)
+    return response.json(school)
   }
 }
 

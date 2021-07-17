@@ -1,6 +1,9 @@
 
 exports.up = knex => knex.schema.createTable('students', table => {
     table.uuid('id').primary(),
+    table.string('name'),
+    table.string('email'),
+    table.string('password'),
     table.uuid('school_id')
         .notNullable()
         .references('id')
@@ -8,7 +11,7 @@ exports.up = knex => knex.schema.createTable('students', table => {
     table.uuid('node_id'),
     table.string('shift'),
     table.string('series'),
-    table.string('class'),
+    table.string('classe'),
     table.uuid('image'),
     table.string('borndate')
     table.string('cpf'),
@@ -18,7 +21,6 @@ exports.up = knex => knex.schema.createTable('students', table => {
     table.string('complement'),
     table.string('uf'),
     table.string('city'),
-    table.string('cep'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
   })

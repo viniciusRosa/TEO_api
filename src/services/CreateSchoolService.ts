@@ -8,7 +8,7 @@ class CreateSchoolService {
     name: string,
     address: string,
     number: string,
-    district: string ,
+    district: string,
     complement: string,
     uf: string,
     city: string,
