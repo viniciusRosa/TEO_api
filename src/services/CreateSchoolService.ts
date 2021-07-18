@@ -2,6 +2,8 @@ import { School } from '../entities/School';
 import { SchoolData } from '../data/SchoolData';
 import {v4 as uuid} from 'uuid';
 
+import { CreatePointService } from './CreatePointService';
+
 
 class CreateSchoolService {
   async execute(
@@ -19,7 +21,9 @@ class CreateSchoolService {
 
     // Use cases for message
 
-    const pointId = 'd96b64f9-39ef-4ac1-b9be-fcfd62752698'
+    const createPointService = new CreatePointService();
+
+    const pointId = await createPointService.execute(`PONTO - ${name}`, address, number, district, uf, city);
 
     const school = new School(
       uuid(),
@@ -33,7 +37,7 @@ class CreateSchoolService {
       cep,
       email,
       phone,
-      pointId
+      pointId[0].id
       );
 
     const schoolData = new SchoolData();

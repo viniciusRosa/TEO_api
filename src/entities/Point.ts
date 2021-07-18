@@ -37,10 +37,3 @@ class Point implements IPoint {
 }
 
 export { Point }
-table.string('address').notNullable(),
-    table.string('number').notNullable(),
-    table.string('district').notNullable(),
-    table.string('complement'),
-    table.string('uf').notNullable(),
-    table.string('city').notNullable(),
-    table.string('cep').notNullable(),
