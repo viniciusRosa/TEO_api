@@ -21,7 +21,7 @@ class SchoolData {
        cep: school.cep,
        email: school.email,
        phone: school.phone,
-       node_id: school.node
+       point: school.pointId
       }, ['id'])
 
       await trx.commit();

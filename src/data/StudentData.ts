@@ -15,7 +15,6 @@ class StudentData {
         email: student.email,
         password: student.password,
         school_id: student.schoolId,
-        node_id: student.nodeId,
         shift: student.shift,
         series: student.series,
         classe: student.classe,
@@ -28,6 +27,8 @@ class StudentData {
         complement: student.complement,
         uf: student.uf,
         city: student.city,
+        latitude: student.latitude,
+        longitude: student.longitude
       }, ['id'])
 
       await trx.commit();

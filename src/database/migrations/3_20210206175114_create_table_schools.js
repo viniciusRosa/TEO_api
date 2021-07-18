@@ -11,7 +11,9 @@ exports.up = knex => knex.schema.createTable('schools', table => {
     table.string('cep').notNullable(),
     table.string('email').notNullable(),
     table.string('phone').notNullable(),
-    table.uuid('node_id'),
+    table.uuid('point_id')
+        .references('id')
+        .inTable('points'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
 

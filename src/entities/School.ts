@@ -10,7 +10,7 @@ export interface ISchool {
   cep: string,
   email: string,
   phone: string,
-  node: string
+  pointId: string
 }
 
 class School implements ISchool {
@@ -26,7 +26,7 @@ class School implements ISchool {
   cep: string;
   email: string;
   phone: string;
-  node: string;
+  pointId: string;
 
   constructor(
     id: string,
@@ -40,7 +40,7 @@ class School implements ISchool {
     cep: string,
     email: string,
     phone: string,
-    node: string
+    pointId: string
     ) {
     this.id = id
     this.name = name,
@@ -53,7 +53,7 @@ class School implements ISchool {
     this.cep = cep,
     this.email = email,
     this.phone = phone,
-    this.node = node
+    this.pointId = pointId
   }
 }
 

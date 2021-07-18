@@ -19,7 +19,7 @@ class CreateSchoolService {
 
     // Use cases for message
 
-    const node = 'd96b64f9-39ef-4ac1-b9be-fcfd62752698'
+    const pointId = 'd96b64f9-39ef-4ac1-b9be-fcfd62752698'
 
     const school = new School(
       uuid(),
@@ -33,7 +33,7 @@ class CreateSchoolService {
       cep,
       email,
       phone,
-      node
+      pointId
       );
 
     const schoolData = new SchoolData();

@@ -1,21 +1,25 @@
-import { INode } from './Nodes'
-
 export interface INodeList {
-  [index:number]: INode;
+  [index:number]: string;
 }
 
 export interface IRoute {
+  id: string
   vacancy: number;
+  shift: string;
   nodes: INodeList;
 }
 
 class Route implements IRoute {
 
+  id: string
   vacancy: number;
+  shift: string;
   nodes: INodeList;
 
-  constructor(nodes: INodeList, vacancy: number) {
+  constructor(id: string, vacancy: number, shift: string, nodes: INodeList) {
+    this.id = id;
     this.vacancy = vacancy;
+    this.shift = shift;
     this.nodes = nodes;
   }
 }

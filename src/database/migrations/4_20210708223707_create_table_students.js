@@ -8,7 +8,6 @@ exports.up = knex => knex.schema.createTable('students', table => {
         .notNullable()
         .references('id')
         .inTable('schools'),
-    table.uuid('node_id'),
     table.string('shift'),
     table.string('series'),
     table.string('classe'),
@@ -21,6 +20,8 @@ exports.up = knex => knex.schema.createTable('students', table => {
     table.string('complement'),
     table.string('uf'),
     table.string('city'),
+    table.decimal('latitude'),
+    table.decimal('longitude'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
   })

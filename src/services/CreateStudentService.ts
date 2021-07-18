@@ -25,7 +25,10 @@ class CreateStudentService {
 
     // Use cases for message
 
-    const nodeId = 'd96b64f9-39ef-4ac1-b9be-fcfd62752698'
+    // get latitude and longitude
+
+    const latitude = 123123
+    const longitude = 345345345
 
     const student = new Student(
       uuid(),
@@ -33,7 +36,6 @@ class CreateStudentService {
       email,
       password,
       schoolId,
-      nodeId,
       shift,
       series,
       classe,
@@ -45,7 +47,9 @@ class CreateStudentService {
       number,
       complement,
       uf,
-      city
+      city,
+      latitude,
+      longitude
       );
 
       console.log(student)

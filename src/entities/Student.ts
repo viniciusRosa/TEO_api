@@ -4,7 +4,6 @@ export interface IStudent {
   email: string;
   password: string;
   schoolId: string;
-  nodeId: string;
   shift: string;
   series: string;
   classe: string;
@@ -17,6 +16,8 @@ export interface IStudent {
   complement: string;
   uf: string;
   city: string;
+  latitude: number;
+  longitude: number;
 }
 
 class Student implements IStudent {
@@ -26,7 +27,6 @@ class Student implements IStudent {
   email: string;
   password: string;
   schoolId: string;
-  nodeId: string;
   shift: string;
   series: string;
   classe: string;
@@ -39,6 +39,8 @@ class Student implements IStudent {
   complement: string;
   uf: string;
   city: string;
+  latitude: number;
+  longitude: number;
 
   constructor(
     id: string,
@@ -46,7 +48,6 @@ class Student implements IStudent {
     email: string,
     password: string,
     schoolId: string,
-    nodeId: string,
     shift: string,
     series: string,
     classe: string,
@@ -58,14 +59,15 @@ class Student implements IStudent {
     number: string,
     complement: string,
     uf: string,
-    city: string
+    city: string,
+    latitude: number,
+    longitude: number
   ) {
     this.id = id ;
     this.name = name;
     this.email = email;
     this.password = password;
     this.schoolId = schoolId;
-    this.nodeId = nodeId;
     this.shift = shift;
     this.series = series;
     this.classe = classe;
@@ -77,7 +79,10 @@ class Student implements IStudent {
     this.number = number;
     this.complement = complement;
     this.uf = uf;
-    this.city = city;  }
+    this.city = city;
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
 }
 
 export { Student }
