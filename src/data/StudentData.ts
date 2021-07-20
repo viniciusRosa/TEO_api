@@ -43,6 +43,27 @@ class StudentData {
 
 
   }
+
+  async show(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const student = await trx('students')
+      .join('files', 'files.id', '=', 'students.image')
+      .select('students.*', 'files.filename')
+      .where('students.id', id)
+
+      await trx.commit();
+
+      return student;
+
+    } catch(err) {
+
+      throw new Error(err);
+
+    }
+  }
 }
 
 export { StudentData }

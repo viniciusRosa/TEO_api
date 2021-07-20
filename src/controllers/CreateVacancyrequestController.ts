@@ -4,13 +4,13 @@ import { CreateVacancyrequestService } from '../services/CreateVacancyrequestSer
 class CreateVacancyrequestController {
   async handle(request: Request, response: Response) {
     const {
-        userid,
+        studentid,
         status
       } = request.body;
 
     const createVacancyrequestService = new CreateVacancyrequestService();
 
-    const vacancyrequest = await createVacancyrequestService.execute({ userid, status});
+    const vacancyrequest = await createVacancyrequestService.execute(studentid, status);
 
     return response.json(vacancyrequest)
   }

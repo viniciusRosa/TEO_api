@@ -1,15 +1,18 @@
 export interface IVacancyrequest {
-  userid: number;
+  id: string
+  studentid: string;
   status: string;
 }
 
 class Vacancyrequest implements IVacancyrequest {
 
-  userid: number;
+  id: string
+  studentid: string;
   status: string;
 
-  constructor(userid: number, status: string) {
-    this.userid = userid;
+  constructor(id: string, studentid: string, status: string) {
+    this.id = id
+    this.studentid = studentid;
     this.status = status;
   }
 }

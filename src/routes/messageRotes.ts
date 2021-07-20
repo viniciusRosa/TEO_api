@@ -11,11 +11,5 @@ const getMessagesController = new GetMessagesController();
 messageRoutes.post('/messages', sendMessageController.handle)
 messageRoutes.get('/messages/:from/:to', getMessagesController.handle)
 
-// messageRoutes.get('/messages/:from/:to', (req, res) => {
-//   const { f, t } = req.params
-//   console.log(f)
-//   res.send('ok')
-// })
-
 
 export default messageRoutes;

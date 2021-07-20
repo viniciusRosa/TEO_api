@@ -3,23 +3,23 @@ import connection from '../database/connection';
 
 class VacancyrequestData {
 
-  async index() {
+  async index(status: string) {
 
     try{
 
       const trx = await connection.transaction();
 
-      const status = 'in_progress';
 
       const vacancyrequests = await trx('vacancyrequests')
-      .join('users', 'users.id', '=', 'vacancyrequests.user_id')
-      .join('students', 'students.user_id', '=', 'users.id')
+      .join('students', 'students.id', '=', 'vacancyrequests.student_id')
       .join('schools', 'schools.id', '=', 'students.school_id')
-      .select('students.image', 'users.name', 'schools.school_name',
-              'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'users.id')
+      .select('students.image', 'students.name as student',  'schools.name as school',
+      'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'students.id')
       .where('vacancyrequests.status', status);
-
+      { ua: 'Users' }
       await trx.commit();
+
+
 
       return vacancyrequests
 
@@ -61,7 +61,8 @@ class VacancyrequestData {
       const trx = await connection.transaction();
 
       const vacancyrequest = await trx('vacancyrequests').insert({
-        user_id: vacancy.userid,
+        id: vacancy.id,
+        student_id: vacancy.studentid,
         status: vacancy.status
       }, ['id', 'status'])
 

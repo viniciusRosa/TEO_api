@@ -9,7 +9,7 @@ const getVacancyrequestListController = new GetVacancyrequestListController;
 const getVacancyrequestController = new GetVacancyrequestController;
 
 vacancyrequestRoutes.post('/vacancyrequest', createVacancyrequestController.handle)
-vacancyrequestRoutes.get('/vacancyrequest', getVacancyrequestListController.handle)
+vacancyrequestRoutes.get('/vacancyrequest/:status', getVacancyrequestListController.handle)
 vacancyrequestRoutes.get('/vacancyrequest/:id', getVacancyrequestController.handle)
 
 

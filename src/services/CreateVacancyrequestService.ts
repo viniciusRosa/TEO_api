@@ -1,12 +1,14 @@
-import { IVacancyrequest, Vacancyrequest } from '../entities/Vacancyrequest';
+import { Vacancyrequest } from '../entities/Vacancyrequest';
 import { VacancyrequestData } from '../data/VacancyrequestData';
+import {v4 as uuid} from 'uuid';
+
 
 class CreateVacancyrequestService {
-  async execute({ userid, status }: IVacancyrequest) {
+  async execute(studentid: string, status: string ) {
 
     // Use cases for message
 
-    const vacancy = new Vacancyrequest(userid, status);
+    const vacancy = new Vacancyrequest(uuid(), studentid, status);
 
     const vacancyData = new VacancyrequestData();
 

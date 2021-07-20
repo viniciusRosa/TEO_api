@@ -4,9 +4,11 @@ import { GetVacancyrequestListService } from '../services/GetVacancyrequestListS
 class GetVacancyrequestListController {
   async handle(request: Request, response: Response) {
 
+    const { status } = request.params;
+
     const getVacancyrequestListService = new GetVacancyrequestListService();
 
-    const vacancyrequests = await getVacancyrequestListService.execute();
+    const vacancyrequests = await getVacancyrequestListService.execute(status);
 
     return response.json(vacancyrequests)
   }

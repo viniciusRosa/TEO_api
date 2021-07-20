@@ -28,7 +28,7 @@ class CreateStudentService {
     // get latitude and longitude
 
     const latitude = 123123
-    const longitude = 345345345
+    const longitude = 345345
 
     const student = new Student(
       uuid(),

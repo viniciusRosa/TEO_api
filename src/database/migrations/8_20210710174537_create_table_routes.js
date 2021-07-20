@@ -1,5 +1,6 @@
 exports.up = knex => knex.schema.createTable('routes', table => {
   table.uuid('id').primary(),
+  table.string('name'),
   table.decimal('vacancy'),
   table.string('shift'),
   table.timestamp('created_at').defaultTo(knex.fn.now()),
