@@ -51,7 +51,8 @@ class StudentData {
 
       const student = await trx('students')
       .join('files', 'files.id', '=', 'students.image')
-      .select('students.*', 'files.filename')
+      .join('schools', 'schools.id', '=', 'students.school_id')
+      .select('students.*', 'files.filename', 'schools.name as school')
       .where('students.id', id)
 
       await trx.commit();

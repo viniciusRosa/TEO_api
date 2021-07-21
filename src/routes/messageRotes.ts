@@ -9,6 +9,11 @@ const getMessagesController = new GetMessagesController();
 
 
 messageRoutes.post('/messages', sendMessageController.handle)
+
+// messageRoutes.post('/messages', (req, res) => {
+//   res.send(req.body)
+// })
+
 messageRoutes.get('/messages/:from/:to', getMessagesController.handle)
 
 

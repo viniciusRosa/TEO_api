@@ -3,7 +3,7 @@ import { SendMessageService } from '../services/SendMessageService';
 
 class SendMessageController {
   async handle(request: Request, response: Response) {
-    const { from, to, message } = request.body.data;
+    const { from, to, message } = request.body;
 
     const sendMessageService = new SendMessageService();
 
