@@ -1,6 +1,9 @@
 
 exports.up = knex => knex.schema.createTable('messages', table => {
     table.uuid('id').primary(),
+    table.uuid('vacancyrequest_id')
+      .references('id')
+      .inTable('vacancyrequests'),
     table.uuid('from_id'),
     table.uuid('to_id')
     table.string('message'),

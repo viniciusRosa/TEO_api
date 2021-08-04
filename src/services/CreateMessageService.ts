@@ -2,12 +2,12 @@ import { Message } from '../entities/Message';
 import { MessageData } from '../data/MessageData';
 import {v4 as uuid} from 'uuid';
 
-class SendMessageService {
-  async execute( from: string, to: string, message: string ) {
+class CreateMessageService {
+  async execute( vacancyrequestId: string, from: string, to: string, message: string ) {
 
     // Use cases for message
 
-    const newmsg = new Message(uuid(), from, to, message);
+    const newmsg = new Message(uuid(), vacancyrequestId, from, to, message);
 
     const messageData = new MessageData();
 
@@ -17,4 +17,4 @@ class SendMessageService {
   }
 }
 
-export { SendMessageService }
+export { CreateMessageService }

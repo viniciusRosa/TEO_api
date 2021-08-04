@@ -4,11 +4,11 @@ import { GetMessagesService } from '../services/GetMessagesService';
 class GetMessagesController {
   async handle(request: Request, response: Response) {
 
-    const { from, to } = request.params;
+    const { vacancyrequest } = request.params;
 
     const getMessagesService = new GetMessagesService();
 
-    const messages = await getMessagesService.execute(Number(from), Number(to));
+    const messages = await getMessagesService.execute(vacancyrequest);
 
     return response.json(messages)
   }

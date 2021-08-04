@@ -10,7 +10,12 @@ const getVacancyrequestController = new GetVacancyrequestController;
 
 vacancyrequestRoutes.post('/vacancyrequest', createVacancyrequestController.handle)
 vacancyrequestRoutes.get('/vacancyrequest/:status', getVacancyrequestListController.handle)
-vacancyrequestRoutes.get('/vacancyrequest/:id', getVacancyrequestController.handle)
+vacancyrequestRoutes.get('/vacancyrequest/student/:id', getVacancyrequestController.handle)
+
+// vacancyrequestRoutes.get('/vacancyrequest/', (req, res) => {
+//   console.log(req.params)
+//   res.send(req)
+// })
 
 
 export default vacancyrequestRoutes;
