@@ -12,8 +12,9 @@ class VacancyrequestData {
 
       const vacancyrequests = await trx('vacancyrequests')
       .join('students', 'students.id', '=', 'vacancyrequests.student_id')
+      .join('files', 'files.id', '=', 'students.image')
       .join('schools', 'schools.id', '=', 'students.school_id')
-      .select('students.image', 'students.name as student',  'schools.name as school',
+      .select('files.filename', 'students.image', 'students.name as student',  'schools.name as school',
       'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'students.id', 'vacancyrequests.id as vacancyrequest')
       .where('vacancyrequests.status', status);
       { ua: 'Users' }

@@ -10,10 +10,14 @@ const getSchoolsController = new GetSchoolsController();
 import { GetSchoolController } from '../controllers/GetSchoolController';
 const getSchoolController = new GetSchoolController();
 
-schoolRoutes.get('/schools', getSchoolsController.handle)
-schoolRoutes.get('/schools/:id', getSchoolController.handle)
+import { UpdateSchoolController } from '../controllers/UpdateSchoolController';
+const updateSchoolController = new UpdateSchoolController();
 
+schoolRoutes.get('/schools', getSchoolsController.handle);
+schoolRoutes.get('/schools/:id', getSchoolController.handle);
 
-schoolRoutes.post('/schools', createSchoolController.handle)
+schoolRoutes.post('/schools', createSchoolController.handle);
+
+schoolRoutes.put('/schools', updateSchoolController.handle);
 
 export default schoolRoutes;

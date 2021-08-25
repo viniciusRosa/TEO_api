@@ -4,8 +4,7 @@ import {v4 as uuid} from 'uuid';
 
 import { CreatePointService } from './CreatePointService';
 
-
-class CreateSchoolService {
+class UpdateSchoolService {
   async execute(
     name: string,
     address: string,
@@ -48,4 +47,4 @@ class CreateSchoolService {
   }
 }
 
-export { CreateSchoolService }
+export { UpdateSchoolService }
