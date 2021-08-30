@@ -3,6 +3,46 @@ import connection from '../database/connection';
 
 class PointData {
 
+  async show(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const school = await trx('points')
+        .select('points.*')
+        .where('points.id', id)
+
+      await trx.commit();
+
+      return school;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+
+  }
+
+  async index() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const points = await trx('points')
+        .select('points.*')
+
+      await trx.commit();
+
+      return points;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
   async save(point: IPoint) {
 
     try {
@@ -30,24 +70,6 @@ class PointData {
     }
   }
 
-  async index() {
-    try {
-
-      const trx = await connection.transaction();
-
-      const points = await trx('points')
-        .select('points.*')
-
-      await trx.commit();
-
-      return points;
-
-    } catch (err) {
-
-      throw new Error(err);
-
-    }
-  }
   
 }
 
