@@ -7,16 +7,7 @@ const messageRoutes = express.Router();
 const createMessageController = new CreateMessageController();
 const getMessagesController = new GetMessagesController();
 
-// messageRoutes.post('/messages', (req, res) => {
-//   console.log(req.body)
-//   res.send(req.body)
-// })
-
 messageRoutes.post('/messages', createMessageController.handle)
-
 messageRoutes.get('/messages/:vacancyrequest', getMessagesController.handle)
-
-// messageRoutes.get('/messages/:from/:to', getMessagesController.handle)
-
 
 export default messageRoutes;

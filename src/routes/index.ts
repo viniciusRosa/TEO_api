@@ -13,7 +13,6 @@ routes.use('/', messageRotes);
 routes.use('/', userRotes);
 routes.use('/', vacancyrequestRoutes);
 routes.use('/', routeRoutes);
-
 routes.use('/', schoolRotes);
 routes.use('/', pointRoutes);
 routes.use('/', studentRotes);

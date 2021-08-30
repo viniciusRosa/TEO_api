@@ -28,9 +28,27 @@ class PointData {
       throw new Error(err);
 
     }
-
-
   }
+
+  async index() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const points = await trx('points')
+        .select('points.*')
+
+      await trx.commit();
+
+      return points;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+  
 }
 
 export { PointData }

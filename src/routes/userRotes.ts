@@ -1,6 +1,7 @@
 import express from 'express';
-const userRoutes = express.Router();
 import { CreateUserController}  from '../controllers/CreateUserController';
+
+const userRoutes = express.Router();
 
 const createUserController = new CreateUserController;
 
