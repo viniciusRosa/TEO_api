@@ -1,7 +1,49 @@
 import { IRoute } from '../entities/Route';
 import connection from '../database/connection';
+import { IData } from '../services/UpdateRouteService';
 
 class RouteData {
+
+  async show(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const route = await trx('routes')
+        .select('routes.*')
+        .where('routes.id', id)
+
+      await trx.commit();
+
+      return route;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+
+  }
+
+  async index() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const schools = await trx('routes')
+        .select('routes.*')
+
+      await trx.commit();
+
+      return schools;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+
+  }
 
   async save(route: IRoute) {
 
@@ -21,6 +63,49 @@ class RouteData {
       return newRoute;
 
     } catch(err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+  async update(id: string, data: IData) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedSchool = await trx('routes').where('id', '=', id)
+        .update({
+          name: route.name,
+          vacancy: route.vacancy,
+          shift: route.shift
+        })
+
+        await trx.commit();
+
+      return updatedSchool;
+
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+  async delete(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      await trx('routes').where('id', '=', id)
+        .del()
+        await trx.commit();
+
+      return {status: 'ok'};
+
+
+    } catch (err) {
 
       throw new Error(err);
 
