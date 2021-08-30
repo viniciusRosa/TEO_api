@@ -1,5 +1,7 @@
 import { IPoint } from '../entities/Point';
 import connection from '../database/connection';
+import { IData } from '../services/UpdatePointService';
+
 
 class PointData {
 
@@ -70,7 +72,50 @@ class PointData {
     }
   }
 
+  async update(id: string, data: IData) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedPoint = await trx('points').where('id', '=', id)
+        .update({
+          name: data.name,
+          address: data.address,
+          number: data.number,
+          district: data.district,
+          uf: data.uf,
+          city: data.city,
+        })
+
+        await trx.commit();
+
+      return updatedPoint;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
   
+  async delete(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      await trx('points').where('id', '=', id)
+        .del()
+        await trx.commit();
+
+      return {status: 'ok'};
+
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
 }
 
 export { PointData }
