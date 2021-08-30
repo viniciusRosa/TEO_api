@@ -3,6 +3,9 @@ import { UpdateSchoolService } from '../services/UpdateSchoolService';
 
 class UpdateSchoolController {
   async handle(request: Request, response: Response) {
+
+    const { id } = request.params;
+
     const {
         name,
         address,
@@ -18,7 +21,7 @@ class UpdateSchoolController {
 
     const updateSchoolService = new UpdateSchoolService();
 
-    const school = await updateSchoolService.execute(
+    const school = await updateSchoolService.execute( id, {
       name,
       address,
       number,
@@ -29,7 +32,7 @@ class UpdateSchoolController {
       cep,
       email,
       phone
-      );
+    });
 
     return response.json(school)
   }

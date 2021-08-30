@@ -1,5 +1,6 @@
 import { ISchool } from '../entities/School';
 import connection from '../database/connection';
+import { IData } from '../services/UpdateSchoolService';
 
 class SchoolData {
 
@@ -74,8 +75,56 @@ class SchoolData {
       throw new Error(err);
 
     }
+  }
+
+  async update(id: string, data: IData) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedSchool = await trx('schools').where('id', '=', id)
+        .update({
+          name: data.name,
+          address: data.address,
+          number: data.number,
+          district: data.district,
+          complement: data.complement,
+          uf: data.uf,
+          city: data.city,
+          cep: data.cep,
+          email: data.email,
+          phone: data.phone,
+        })
+
+        await trx.commit();
+
+      return updatedSchool;
 
 
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+  async delete(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      await trx('schools').where('id', '=', id)
+        .del()
+        await trx.commit();
+
+      return {status: 'ok'};
+
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
   }
 }
 

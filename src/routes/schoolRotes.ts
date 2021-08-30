@@ -13,11 +13,14 @@ const getSchoolController = new GetSchoolController();
 import { UpdateSchoolController } from '../controllers/UpdateSchoolController';
 const updateSchoolController = new UpdateSchoolController();
 
+import { DeleteSchoolController } from '../controllers/DeleteSchoolController';
+const deleteSchoolController = new DeleteSchoolController()
+
 schoolRoutes.get('/schools', getSchoolsController.handle);
 schoolRoutes.get('/schools/:id', getSchoolController.handle);
-
 schoolRoutes.post('/schools', createSchoolController.handle);
+schoolRoutes.put('/schools/:id', updateSchoolController.handle);
+schoolRoutes.delete('/schools/:id', deleteSchoolController.handle);
 
-schoolRoutes.put('/schools', updateSchoolController.handle);
 
 export default schoolRoutes;

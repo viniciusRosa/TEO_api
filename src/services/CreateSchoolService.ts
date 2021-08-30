@@ -23,7 +23,7 @@ class CreateSchoolService {
 
     const createPointService = new CreatePointService();
 
-    const pointId = await createPointService.execute(`${name}(PONTO)`, address, number, district, uf, city);
+    const pointId = await createPointService.execute(`${name}(Parada de ônibus)`, address, number, district, uf, city);
 
     const school = new School(
       uuid(),
