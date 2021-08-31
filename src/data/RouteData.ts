@@ -76,9 +76,9 @@ class RouteData {
 
       const updatedSchool = await trx('routes').where('id', '=', id)
         .update({
-          name: route.name,
-          vacancy: route.vacancy,
-          shift: route.shift
+          name: data.name,
+          vacancy: data.vacancy,
+          shift: data.shift
         })
 
         await trx.commit();
