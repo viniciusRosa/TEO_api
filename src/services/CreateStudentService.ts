@@ -52,7 +52,6 @@ class CreateStudentService {
       longitude
       );
 
-      console.log(student)
     const studentData = new StudentData();
 
     const newStudent = await studentData.save(student);

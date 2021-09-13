@@ -29,7 +29,7 @@ class StudentData {
         city: student.city,
         latitude: student.latitude,
         longitude: student.longitude
-      }, ['id'])
+      }, ['*'])
 
       await trx.commit();
 

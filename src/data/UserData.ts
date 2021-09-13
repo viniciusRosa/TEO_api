@@ -15,13 +15,13 @@ class UserData {
         email: user.email,
         role: user.role,
         password: user.password
-      }, ['id', 'email'])
+      }, ['*'])
 
       await trx.commit();
 
       return newUser;
 
-    } catch(err) {
+    } catch(err: any) {
 
       throw new Error(err);
 

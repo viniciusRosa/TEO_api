@@ -4,6 +4,7 @@ exports.up = knex => knex.schema.createTable('students', table => {
     table.string('name'),
     table.string('email'),
     table.string('password'),
+    table.string('deficiencyInfo'),
     table.uuid('school_id')
         .notNullable()
         .references('id')
