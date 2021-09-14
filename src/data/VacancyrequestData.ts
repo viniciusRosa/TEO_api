@@ -9,7 +9,6 @@ class VacancyrequestData {
 
       const trx = await connection.transaction();
 
-
       const vacancyrequests = await trx('vacancyrequests')
       .join('students', 'students.id', '=', 'vacancyrequests.student_id')
       .join('files', 'files.id', '=', 'students.image')
@@ -19,8 +18,6 @@ class VacancyrequestData {
       .where('vacancyrequests.status', status);
       { ua: 'Users' }
       await trx.commit();
-
-
 
       return vacancyrequests
 
@@ -40,14 +37,6 @@ class VacancyrequestData {
       const vacancyrequests = await trx('vacancyrequests')
       .select()
       .where('vacancyrequests.student_id', id)
-      // .orderBy('vacancyrequests.created_at', 'desc');
-
-      // const vacancyrequests = await trx('vacancyrequests')
-      // .join('users', 'users.id', '=', 'vacancyrequests.user_id')
-      // .join('students', 'students.user_id', '=', 'users.id')
-      // .join('schools', 'schools.id', '=', 'students.school_id')
-      // .select()
-      // .where('users.id', id);
 
       await trx.commit();
 
@@ -69,8 +58,9 @@ class VacancyrequestData {
       const vacancyrequest = await trx('vacancyrequests').insert({
         id: vacancy.id,
         student_id: vacancy.studentid,
-        status: vacancy.status
-      }, ['id', 'student_id', 'status', 'created_at', 'updated_at'])
+        status: vacancy.status,
+        route: vacancy.route
+      }, ['*'])
 
       await trx.commit();
 
@@ -81,7 +71,6 @@ class VacancyrequestData {
       throw new Error(err);
 
     }
-
 
   }
 }

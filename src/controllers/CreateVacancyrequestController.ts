@@ -5,12 +5,13 @@ class CreateVacancyrequestController {
   async handle(request: Request, response: Response) {
     const {
         studentid,
+        route,
         status
       } = request.body;
 
     const createVacancyrequestService = new CreateVacancyrequestService();
 
-    const vacancyrequest = await createVacancyrequestService.execute(studentid, status);
+    const vacancyrequest = await createVacancyrequestService.execute(studentid, route, status);
 
     return response.json(vacancyrequest)
   }

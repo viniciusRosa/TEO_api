@@ -56,7 +56,7 @@ class RouteData {
        name: route.name,
        vacancy: route.vacancy,
        shift: route.shift
-      }, ['id'])
+      }, ['*'])
 
       await trx.commit();
 

@@ -4,11 +4,11 @@ import {v4 as uuid} from 'uuid';
 
 
 class CreateVacancyrequestService {
-  async execute(studentid: string, status: string ) {
+  async execute(studentid: string, status: string, route: string ) {
 
     // Use cases for message
 
-    const vacancy = new Vacancyrequest(uuid(), studentid, status);
+    const vacancy = new Vacancyrequest(uuid(), studentid, status, route);
 
     const vacancyData = new VacancyrequestData();
 
