@@ -59,7 +59,7 @@ class PointData {
        district: point.district,
        uf: point.uf,
        city: point.city,
-      }, ['id'])
+      }, ['*'])
 
       await trx.commit();
 
@@ -97,7 +97,7 @@ class PointData {
 
     }
   }
-  
+
   async delete(id: string) {
     try {
 

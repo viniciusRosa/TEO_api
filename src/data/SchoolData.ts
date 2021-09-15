@@ -64,7 +64,7 @@ class SchoolData {
         email: school.email,
         phone: school.phone,
         point_id: school.pointId
-      }, ['id'])
+      }, ['*'])
 
       await trx.commit();
 

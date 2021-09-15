@@ -58,8 +58,9 @@ class VacancyrequestData {
       const vacancyrequest = await trx('vacancyrequests').insert({
         id: vacancy.id,
         student_id: vacancy.studentid,
-        status: vacancy.status,
-        route: vacancy.route
+        route: vacancy.route,
+        status: vacancy.status
+
       }, ['*'])
 
       await trx.commit();
