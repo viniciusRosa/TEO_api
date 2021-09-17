@@ -1,6 +1,8 @@
 import { Point } from '../entities/Point';
 import { PointData } from '../data/PointData';
 import {v4 as uuid} from 'uuid';
+import { geocodeService } from './GeocodeService';
+
 
 
 class CreatePointService {
@@ -13,12 +15,7 @@ class CreatePointService {
     city: string
     ) {
 
-    // Use cases for point
-
-    // get latitude and longitude
-
-    const latitude = 123123
-    const longitude = 3534535
+    const geocoding = await geocodeService(address, number, city, uf);
 
     const point = new Point(
       uuid(),
@@ -28,9 +25,11 @@ class CreatePointService {
       district,
       uf,
       city,
-      latitude,
-      longitude
+      geocoding.lat,
+      geocoding.lng
       );
+
+      console.log(point)
 
     const pointData = new PointData();
 

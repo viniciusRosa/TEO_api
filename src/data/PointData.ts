@@ -59,6 +59,8 @@ class PointData {
        district: point.district,
        uf: point.uf,
        city: point.city,
+       latitude: point.latitude,
+       longitude: point.longitude
       }, ['*'])
 
       await trx.commit();
