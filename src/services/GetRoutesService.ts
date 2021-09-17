@@ -4,8 +4,6 @@ import { RoutesPointsData } from '../data/RoutesPointsData';
 class GetRoutesService {
   async execute() {
 
-    // Use cases for message
-
     const routeData = new RouteData();
     const routesPointsData = new RoutesPointsData();
     const routes = await routeData.index();

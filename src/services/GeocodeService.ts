@@ -12,7 +12,6 @@ async function geocodeService(address: string, number: string, city: string, uf:
   const coordinates = await googleApi.get(`${Normalize(address)}+${number}+${Normalize(city)}+${uf}&key=${process.env.GKEY}`);
   const { lat, lng } = coordinates.data.results[0].geometry.location;
   return { lat, lng };
-  // return coordinates.data;
 }
 
 export { geocodeService }

@@ -33,8 +33,6 @@ class RouteData {
       const routes = await trx('routes')
         .select('routes.*')
 
-      // const routes = await trx.raw('SELECT r.*, p.* FROM public.routes r left join public.routes_points p on r.id = p.route_id where r.id in(select id from public.routes) group by p.id, r.id;')
-
       await trx.commit();
 
       return routes;

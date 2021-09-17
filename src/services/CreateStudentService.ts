@@ -1,7 +1,7 @@
 import { Student } from '../entities/Student';
 import { StudentData } from '../data/StudentData';
 import {v4 as uuid} from 'uuid';
-
+import { geocodeService } from './GeocodeService';
 
 class CreateStudentService {
   async execute(
@@ -23,12 +23,7 @@ class CreateStudentService {
     schoolId: string
     ) {
 
-    // Use cases for message
-
-    // get latitude and longitude
-
-    const latitude = 123123
-    const longitude = 345345
+    const geocoding = await geocodeService(address, number, city, uf);
 
     const student = new Student(
       uuid(),
@@ -48,8 +43,8 @@ class CreateStudentService {
       complement,
       uf,
       city,
-      latitude,
-      longitude
+      geocoding.lat,
+      geocoding.lng
       );
 
     const studentData = new StudentData();

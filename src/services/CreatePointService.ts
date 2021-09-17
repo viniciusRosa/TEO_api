@@ -29,8 +29,6 @@ class CreatePointService {
       geocoding.lng
       );
 
-      console.log(point)
-
     const pointData = new PointData();
 
     const newPoint = await pointData.save(point);

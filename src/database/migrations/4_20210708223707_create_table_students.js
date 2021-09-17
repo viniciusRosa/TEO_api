@@ -21,8 +21,8 @@ exports.up = knex => knex.schema.createTable('students', table => {
     table.string('complement'),
     table.string('uf'),
     table.string('city'),
-    table.decimal('latitude'),
-    table.decimal('longitude'),
+    table.string('latitude'),
+    table.string('longitude'),
     table.timestamp('created_at').defaultTo(knex.fn.now()),
     table.timestamp('updated_at').defaultTo(knex.fn.now())
 
