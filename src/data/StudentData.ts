@@ -40,8 +40,26 @@ class StudentData {
       throw new Error(err);
 
     }
+  }
 
+  async checkEmail(email: string) {
+    try {
 
+      const trx = await connection.transaction();
+
+      const student = await trx('students')
+      .where("students.email", "=", email)
+      .first()
+      .select('*')
+      await trx.commit();
+
+      return student;
+
+    } catch(err) {
+
+      throw new Error(err);
+
+    }
   }
 
   async show(id: string) {
