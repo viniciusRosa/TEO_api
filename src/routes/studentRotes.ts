@@ -16,6 +16,6 @@ const upload = multer({ storage: studentStorage });
 
 studentRoutes.post('/students', upload.single('image'), createStudentController.handle);
 studentRoutes.get('/students/:id', getStudentController.handle);
-studentRoutes.get('/student/emailcheck', getStudentEmailCheckController.handle);
+studentRoutes.get('/emailcheck/:email', getStudentEmailCheckController.handle);
 
 export default studentRoutes;

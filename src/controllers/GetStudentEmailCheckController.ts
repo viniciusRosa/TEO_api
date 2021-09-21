@@ -4,7 +4,7 @@ import { GetStudentEmailCheckService } from '../services/GetStudentEmailCheckSer
 class GetStudentEmailCheckController {
   async handle(request: Request, response: Response) {
 
-    const { email } = request.body;
+    const { email } = request.params;
 
     const getStudentEmailCheckService = new GetStudentEmailCheckService();
 
