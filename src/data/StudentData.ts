@@ -1,5 +1,6 @@
 import { IStudent } from '../entities/Student';
 import connection from '../database/connection';
+import { IData } from '../services/UpdateStudentService';
 
 class StudentData {
 
@@ -78,6 +79,26 @@ class StudentData {
       return student;
 
     } catch(err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+  async update(id: string, data: IData) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedSchool = await trx('students').where('id', '=', id)
+        .update(data, ['*'])
+
+        await trx.commit();
+
+      return updatedSchool;
+
+
+    } catch (err) {
 
       throw new Error(err);
 
