@@ -3,6 +3,26 @@ import connection from '../database/connection';
 
 class UserData {
 
+  async index() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const points = await trx('users')
+        .select('users.*')
+
+      await trx.commit();
+
+      return points;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+
   async save(user: IUser) {
 
     try {
@@ -26,8 +46,6 @@ class UserData {
       throw new Error(err);
 
     }
-
-
   }
 }
 
