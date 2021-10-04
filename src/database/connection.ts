@@ -1,16 +1,13 @@
 import knex from 'knex';
+const configs = require('../../knexfile');
 
 import dotenv from 'dotenv';
 dotenv.config();
 
+console.log(process.env.NODE_ENV)
 
-const connection = knex({
-    client: 'pg',
-    connection: {
-      database: process.env.TEODATABASE,
-      user: process.env.TEOUSER,
-      password: process.env.TEOPASSWORD,
-    }
-})
+const config = process.env.NODE_ENV === 'test' ? configs.test : configs.development;
+
+const connection = knex(config);
 
 export default connection;

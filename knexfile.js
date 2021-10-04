@@ -1,14 +1,17 @@
 // Update with your config settings.
 
+require('dotenv').config();
+
 module.exports = {
+
 
   development: {
     client: 'pg',
     connection: {
-      database: "dbv1",
-      user: "pguser",
-      password: "1234"
-    }, 
+      database: process.env.TEODATABASE,
+      user: process.env.TEOUSER,
+      password: process.env.TEOPASSWORD,
+    },
     migrations: {
       tableName: 'knex_migrations',
       directory: `${__dirname}/src/database/migrations`
@@ -16,6 +19,18 @@ module.exports = {
     seeds: {
       directory: `${__dirname}/src/database/seeds`
     }
-  }
-  
+  },
+
+  test: {
+    client: 'sqlite3',
+    connection: {
+      filename: `${__dirname}/src/database/db.sqlite3`
+    },
+    migrations: {
+      directory: `${__dirname}/src/database/migrations`
+    },
+    useNullAsDefault: true,
+  },
+
+
 };
