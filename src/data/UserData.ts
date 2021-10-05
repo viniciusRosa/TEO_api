@@ -1,19 +1,41 @@
 import { IUser } from '../entities/User';
 import connection from '../database/connection';
+import { IData } from '../services/UpdatePointService';
 
 class UserData {
+
+  async show(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const user = await trx('users')
+        .select('users.*')
+        .where('users.id', id)
+
+      await trx.commit();
+
+      return user;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+
+  }
 
   async index() {
     try {
 
       const trx = await connection.transaction();
 
-      const points = await trx('users')
+      const users = await trx('users')
         .select('users.*')
 
       await trx.commit();
 
-      return points;
+      return users;
 
     } catch (err) {
 
@@ -47,6 +69,45 @@ class UserData {
 
     }
   }
+
+  async update(id: string, data: IData) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedUser = await trx('users').where('id', '=', id)
+        .update(data)
+
+        await trx.commit();
+
+      return updatedUser;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
+  async delete(id: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      await trx('users').where('id', '=', id)
+        .del()
+        await trx.commit();
+
+      return {status: 'ok'};
+
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
 }
 
 export { UserData }

@@ -22,10 +22,4 @@ studentRoutes.get('/emailcheck/:email', getStudentEmailCheckController.handle);
 
 studentRoutes.put('/students/:id', upload.single('image'), updateStudentController.handle);
 
-// studentRoutes.put('/students/:id', (req, res) => {
-//   console.log(req.params);
-//   console.log(req.body);
-// });
-
-
 export default studentRoutes;

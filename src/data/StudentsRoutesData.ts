@@ -1,6 +1,6 @@
 import connection from '../database/connection';
 
-class RoutesPointsData {
+class StudentsRoutesData {
 
   async show(id: string) {
     try {
@@ -47,4 +47,4 @@ class RoutesPointsData {
 
 }
 
-export { RoutesPointsData };
+export { StudentsRoutesData };

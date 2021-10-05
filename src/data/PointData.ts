@@ -2,7 +2,6 @@ import { IPoint } from '../entities/Point';
 import connection from '../database/connection';
 import { IData } from '../services/UpdatePointService';
 
-
 class PointData {
 
   async show(id: string) {
@@ -10,13 +9,13 @@ class PointData {
 
       const trx = await connection.transaction();
 
-      const school = await trx('points')
+      const point = await trx('points')
         .select('points.*')
         .where('points.id', id)
 
       await trx.commit();
 
-      return school;
+      return point;
 
     } catch (err) {
 
