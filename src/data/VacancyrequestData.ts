@@ -14,7 +14,7 @@ class VacancyrequestData {
       .join('files', 'files.id', '=', 'students.image')
       .join('schools', 'schools.id', '=', 'students.school_id')
       .select('files.filename', 'students.image', 'students.name as student',  'schools.name as school',
-      'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'students.id', 'vacancyrequests.id as vacancyrequest')
+      'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'students.id', 'vacancyrequests.id as vacancyrequest', 'vacancyrequests.status as vacancyrequestsStatus')
       .where('vacancyrequests.status', status);
       { ua: 'Users' }
       await trx.commit();
@@ -73,6 +73,28 @@ class VacancyrequestData {
 
     }
 
+  }
+
+  async update(id: string, data: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedvancacy = await trx('vacancyrequests').where('vacancyrequests.id', '=', id)
+        .update({
+          status: data
+        }, ['*'])
+
+        await trx.commit();
+
+      return updatedvancacy;
+
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
   }
 }
 
