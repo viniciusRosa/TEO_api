@@ -8,11 +8,13 @@ class UpdateVacancyStatusController {
 
     const data = request.body;
 
-    const updateVacancyStatusService = new UpdateVacancyStatusService()
+    const updateVacancyStatusService = new UpdateVacancyStatusService();
 
-    const vancacy = await updateVacancyStatusService.execute(id, data.status)
+    // console.log({...data, vacancyId: id})
 
-    return response.json(vancacy)
+    const vancacy = await updateVacancyStatusService.execute(id, data.newStatus, data.student, data.route);
+
+    return response.json(vancacy);
   }
 }
 
