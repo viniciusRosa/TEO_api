@@ -1,10 +1,9 @@
 import { StudentsRoutesData } from '../data/StudentsRoutesData';
 import { RouteData } from '../data/RouteData';
-import {v4 as uuid} from 'uuid';
 
 
 class GetCountRoutesService {
-  async execute(studentId: string, routeId: string) {
+  async execute(routeId: string) {
 
     const routeData = new RouteData();
     const studentRouteData = new StudentsRoutesData();

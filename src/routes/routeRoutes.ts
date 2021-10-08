@@ -28,9 +28,9 @@ import { GetCountRoutesService } from '../services/GetCountRoutesService';
 const melancia = new GetCountRoutesService();
 routeRoutes.get('/teststroutes', async (req, res) => {
 
-  const {route, student} = req.body;
+  const {route} = req.body;
 
-  const response = await melancia.execute(student, route);
+  const response = await melancia.execute(route);
 
   return res.send(response)
 })
