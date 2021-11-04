@@ -13,10 +13,12 @@ class VacancyrequestData {
       .join('students', 'students.id', '=', 'vacancyrequests.student_id')
       .join('files', 'files.id', '=', 'students.image')
       .join('schools', 'schools.id', '=', 'students.school_id')
+      .join('routes', 'routes.id', '=', 'vacancyrequests.route')
       .select('files.filename', 'students.image', 'students.name as student',  'schools.name as school',
       'students.shift', 'students.uf', 'students.city', 'vacancyrequests.created_at', 'students.id',
-      'vacancyrequests.id as vacancyrequest', 'vacancyrequests.status as vacancyrequestsStatus', 'vacancyrequests.route as vacancyrequestsRoute')
-      .where('vacancyrequests.status', status);
+      'vacancyrequests.id as vacancyrequest', 'vacancyrequests.status as vacancyrequestsStatus', 'vacancyrequests.route as vacancyrequestsRoute',
+      'vacancyrequests.created_at', 'routes.name as routeName')
+      .where('vacancyrequests.status', status).orderBy('vacancyrequests.created_at', 'desc');
       { ua: 'Users' }
       await trx.commit();
 
