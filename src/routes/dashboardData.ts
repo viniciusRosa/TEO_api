@@ -6,6 +6,10 @@ const dashboardDataRoutes = express.Router();
 const getDashboardDataController = new GetDashboardDataController();
 
 dashboardDataRoutes.get('/schoolamount', getDashboardDataController.schoolAmount);
+dashboardDataRoutes.get('/studentamount', getDashboardDataController.studentAmount);
+dashboardDataRoutes.get('/routeamount', getDashboardDataController.routeAmount);
+
+dashboardDataRoutes.get('/vacancyamount', getDashboardDataController.vacancyAmount);
 
 
 export default dashboardDataRoutes;

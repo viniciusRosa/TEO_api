@@ -99,6 +99,24 @@ class VacancyrequestData {
 
     }
   }
+
+  async amount() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const vacancy = await trx('vacancyrequests').count('*')
+      .where('vacancyrequests.status', '=', 'in_progress');
+      await trx.commit();
+
+      return vacancy;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
 }
 
 export { VacancyrequestData }

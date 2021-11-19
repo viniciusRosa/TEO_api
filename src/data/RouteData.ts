@@ -111,6 +111,24 @@ class RouteData {
 
     }
   }
+
+  async amount() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const routeamount = await trx('routes').count('*');
+      await trx.commit();
+
+      return routeamount;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
 }
 
 export { RouteData }

@@ -104,6 +104,23 @@ class StudentData {
 
     }
   }
+
+  async amount() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const studentsamount = await trx('students').count('*');
+      await trx.commit();
+
+      return studentsamount;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
 }
 
 export { StudentData }
