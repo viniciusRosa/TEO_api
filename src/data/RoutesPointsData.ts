@@ -21,7 +21,6 @@ class RoutesPointsData {
       throw new Error(err);
 
     }
-
   }
 
   async index() {
@@ -42,7 +41,29 @@ class RoutesPointsData {
       throw new Error(err);
 
     }
+  }
 
+  async save(id: string, route: string, point: string) {
+
+    try {
+
+      const trx = await connection.transaction();
+
+      const newRoutePoint = await trx('routes_points').insert({
+       id: id,
+       route_id: route,
+       point_id: point,
+      }, ['*'])
+
+      await trx.commit();
+
+      return newRoutePoint;
+
+    } catch(err) {
+
+      throw new Error(err);
+
+    }
   }
 
 }

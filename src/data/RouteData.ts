@@ -135,7 +135,7 @@ class RouteData {
       const trx = await connection.transaction();
 
       const routeamount = await trx.raw(
-        'select r."name", r.vacancy, count(sr.route_id) FROM public.routes r join public.students_routes sr on r.id = sr.route_id group by sr.route_id, r."name", r.vacancy'
+        'select r."name", r.vacancy, count(sr.route_id) FROM public.routes r left join public.students_routes sr on r.id = sr.route_id group by sr.route_id, r."name", r.vacancy'
       )
 
       await trx.commit();

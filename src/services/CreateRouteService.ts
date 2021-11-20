@@ -1,5 +1,6 @@
 import { Route } from '../entities/Route';
 import { RouteData } from '../data/RouteData';
+import { RoutesPointsData } from '../data/RoutesPointsData';
 import {v4 as uuid} from 'uuid';
 
 
@@ -7,11 +8,13 @@ class CreateRouteService {
   async execute(
     name: string,
     vacancy: number,
-    shift: string
+    shift: string,
+    points: any[]
     ) {
 
     // Use cases for routes
-
+    const routeData = new RouteData();
+    const routePointsData = new RoutesPointsData();
     // get latitude and longitude
 
     const route = new Route(
@@ -21,7 +24,11 @@ class CreateRouteService {
       shift
       );
 
-    const routeData = new RouteData();
+    points.map(async point => {
+      const response = await routePointsData.save(uuid(), route.id, point);
+    })
+
+
 
     const newRoute = await routeData.save(route);
 

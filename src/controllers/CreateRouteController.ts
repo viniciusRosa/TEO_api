@@ -4,17 +4,20 @@ import { CreateRouteService } from '../services/CreateRouteService';
 class CreateRouteController {
   async handle(request: Request, response: Response) {
     const {
-        name,
-        vacancy,
-        shift
+      R00_name,
+      R01_vacancy,
+      R02_shift,
       } = request.body;
+
+    const points = Object.values(request.body).slice(3)
 
     const createRouteService = new CreateRouteService();
 
     const route = await createRouteService.execute(
-      name,
-      vacancy,
-      shift
+      R00_name,
+      R01_vacancy,
+      R02_shift,
+      points
       );
 
     return response.json(route)
