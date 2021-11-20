@@ -10,6 +10,7 @@ dashboardDataRoutes.get('/studentamount', getDashboardDataController.studentAmou
 dashboardDataRoutes.get('/routeamount', getDashboardDataController.routeAmount);
 
 dashboardDataRoutes.get('/vacancyamount', getDashboardDataController.vacancyAmount);
+dashboardDataRoutes.get('/routedata', getDashboardDataController.routeData);
 
 
 export default dashboardDataRoutes;
