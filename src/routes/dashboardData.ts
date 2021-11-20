@@ -11,6 +11,7 @@ dashboardDataRoutes.get('/routeamount', getDashboardDataController.routeAmount);
 
 dashboardDataRoutes.get('/vacancyamount', getDashboardDataController.vacancyAmount);
 dashboardDataRoutes.get('/routedata', getDashboardDataController.routeData);
+dashboardDataRoutes.get('/queueamount', getDashboardDataController.queueAmountData);
 
 
 export default dashboardDataRoutes;

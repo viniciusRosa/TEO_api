@@ -3,7 +3,6 @@ import { SchoolData } from '../../data/SchoolData';
 import { StudentData } from '../../data/StudentData';
 import { RouteData } from '../../data/RouteData';
 import { VacancyrequestData } from '../../data/VacancyrequestData';
-import { StudentsRoutesData } from '../../data/StudentsRoutesData';
 
 
 class GetDashboardDataController {
@@ -51,6 +50,15 @@ class GetDashboardDataController {
     const routes = await routesData.amountStudents();
 
     return response.json(routes.rows)
+  }
+
+  async queueAmountData(request: Request, response: Response) {
+
+    const vacancy = new VacancyrequestData();
+
+    const studentOnQueue = await vacancy.amountStudentsOnQueue();
+
+    return response.json(studentOnQueue)
   }
 }
 

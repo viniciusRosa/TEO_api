@@ -117,6 +117,24 @@ class VacancyrequestData {
 
     }
   }
+
+  async amountStudentsOnQueue() {
+    try {
+
+      const trx = await connection.transaction();
+
+      const vacancy = await trx('vacancyrequests').count('*')
+      .where('vacancyrequests.status', '=', 'queue');
+      await trx.commit();
+
+      return vacancy[0].count;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
 }
 
 export { VacancyrequestData }
