@@ -1,6 +1,7 @@
 import { UserData } from '../data/UserData';
 
 class UpdateUserService {
+
   async execute(
     id: string,
     name: string,
@@ -15,6 +16,30 @@ class UpdateUserService {
 
     return updateUser;
   }
+
+  async executeHandleActivity(
+    id: string,
+    msg: boolean) {
+
+    // Use cases for message
+
+    const userData = new UserData();
+
+    if (msg) {
+
+      const updateUser = await userData.updateActivity(id, 1);
+      return msg;
+
+    } else {
+
+      const updateUser = await userData.updateActivity(id, 0);
+      return msg;
+
+    }
+
+
+  }
+
 }
 
 export { UpdateUserService }

@@ -111,6 +111,27 @@ class UserData {
     }
   }
 
+  async updateActivity(id: string, activity: number) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const updatedUser = await trx('users').where('id', '=', id)
+        .update({
+          is_active: activity
+        })
+
+        await trx.commit();
+
+      return updatedUser;
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+  }
+
 }
 
 export { UserData }

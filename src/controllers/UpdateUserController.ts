@@ -22,6 +22,20 @@ class UpdateUserController {
 
     return response.json(user)
   }
+
+  async handleActivity(request: Request, response: Response) {
+
+    const { id } = request.params;
+
+    const { msg } = request.body;
+
+    const updateUserService = new UpdateUserService();
+
+    const user = await updateUserService.executeHandleActivity( id, msg);
+
+    return response.json(user)
+  }
+
 }
 
 export { UpdateUserController }

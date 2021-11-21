@@ -19,7 +19,7 @@ userRoutes.get('/users/:id', getUserController.handle);
 userRoutes.put('/users/:id', updateUserController.handle);
 userRoutes.delete('/users/:id', deleteUserController.handle);
 
-// userRoutes.put('/users/activity/:id', updateUserController.handleActivity);
+userRoutes.put('/users/activity/:id', updateUserController.handleActivity);
 
 
 export default userRoutes;
