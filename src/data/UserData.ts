@@ -55,7 +55,6 @@ class UserData {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role,
         password: user.password
       }, ['*'])
 
@@ -70,13 +69,17 @@ class UserData {
     }
   }
 
-  async update(id: string, data: IData) {
+  async update(id: string, name: string, email: string, password: string) {
     try {
 
       const trx = await connection.transaction();
 
       const updatedUser = await trx('users').where('id', '=', id)
-        .update(data)
+        .update({
+          name,
+          email,
+          password
+        })
 
         await trx.commit();
 

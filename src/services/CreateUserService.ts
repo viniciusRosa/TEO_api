@@ -4,23 +4,11 @@ import {v4 as uuid} from 'uuid';
 
 
 class CreateUserService {
-  async execute(name: string, email: string, role: string, password: string ) {
+  async execute(name: string, email: string, password: string ) {
 
     // Use cases for message
 
-    if (!name) {
-      throw new Error('Name incorrect')
-    }
-
-    if (!email) {
-      throw new Error('Email incorrect')
-    }
-
-    if (!password) {
-      throw new Error('Password incorrect')
-    }
-
-    const user = new User(uuid(), name, email, role, password);
+    const user = new User(uuid(), name, email, password);
 
     const userData = new UserData();
 
