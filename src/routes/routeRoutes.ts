@@ -23,17 +23,5 @@ routeRoutes.delete('/routes/:id', deleteRouteController.handle);
 
 routeRoutes.get('/routewithpoints/:id', getRoutewithpointsController.handle);
 
-// test
-import { GetCountRoutesService } from '../services/GetCountRoutesService';
-const melancia = new GetCountRoutesService();
-routeRoutes.get('/teststroutes', async (req, res) => {
-
-  const {route} = req.body;
-
-  const response = await melancia.execute(route);
-
-  return res.send(response)
-})
-
 
 export default routeRoutes;

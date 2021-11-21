@@ -24,8 +24,8 @@ class CreateRouteService {
       shift
       );
 
-    points.map(async point => {
-      const response = await routePointsData.save(uuid(), route.id, point);
+    points.map(async (point, index) => {
+      const response = await routePointsData.save(uuid(), route.id, point, index);
     })
 
 

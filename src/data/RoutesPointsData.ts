@@ -43,7 +43,7 @@ class RoutesPointsData {
     }
   }
 
-  async save(id: string, route: string, point: string) {
+  async save(id: string, route: string, point: string, index: number) {
 
     try {
 
@@ -53,6 +53,7 @@ class RoutesPointsData {
        id: id,
        route_id: route,
        point_id: point,
+       index
       }, ['*'])
 
       await trx.commit();
