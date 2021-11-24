@@ -7,9 +7,10 @@ class CreateRouteController {
       R00_name,
       R01_vacancy,
       R02_shift,
+      R03_time
       } = request.body;
 
-    const points = Object.values(request.body).slice(3)
+    const points = Object.values(request.body).slice(4)
 
     const createRouteService = new CreateRouteService();
 
@@ -17,6 +18,7 @@ class CreateRouteController {
       R00_name,
       R01_vacancy,
       R02_shift,
+      R03_time,
       points
       );
 

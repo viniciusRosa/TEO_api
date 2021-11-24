@@ -3,8 +3,8 @@ exports.up = knex => knex.schema.createTable('routes', table => {
   table.string('name'),
   table.decimal('vacancy'),
   table.string('shift'),
-  table.timestamp('timeDeparture'),
-  table.timestamp('timeArrival'),
+  table.string('timeDeparture'),
+  table.string('timeArrival'),
   table.timestamp('created_at').defaultTo(knex.fn.now()),
   table.timestamp('updated_at').defaultTo(knex.fn.now())
 })

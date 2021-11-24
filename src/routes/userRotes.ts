@@ -21,5 +21,4 @@ userRoutes.delete('/users/:id', deleteUserController.handle);
 
 userRoutes.put('/users/activity/:id', updateUserController.handleActivity);
 
-
 export default userRoutes;

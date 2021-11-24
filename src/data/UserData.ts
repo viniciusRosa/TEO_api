@@ -25,6 +25,27 @@ class UserData {
 
   }
 
+  async findOne(email: string) {
+    try {
+
+      const trx = await connection.transaction();
+
+      const user = await trx('users')
+        .select('users.*')
+        .where('users.email', email).limit(1)
+
+      await trx.commit();
+
+      return user[0];
+
+    } catch (err) {
+
+      throw new Error(err);
+
+    }
+
+  }
+
   async index() {
     try {
 

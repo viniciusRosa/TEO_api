@@ -9,6 +9,7 @@ class CreateRouteService {
     name: string,
     vacancy: number,
     shift: string,
+    time: string,
     points: any[]
     ) {
 
@@ -21,7 +22,8 @@ class CreateRouteService {
       uuid(),
       name,
       vacancy,
-      shift
+      shift,
+      time
       );
 
     points.map(async (point, index) => {

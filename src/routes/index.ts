@@ -7,9 +7,11 @@ import userRotes from './userRotes';
 import vacancyrequestRoutes from './vacancyrequestRotes'
 import routeRoutes from './routeRoutes';
 import dashboardData from './dashboardData';
+import authRotes from './authRotes';
 
 const routes = express.Router();
 
+routes.use('/', authRotes);
 routes.use('/', messageRotes);
 routes.use('/', userRotes);
 routes.use('/', vacancyrequestRoutes);
